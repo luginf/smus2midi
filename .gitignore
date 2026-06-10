@@ -30,6 +30,7 @@
 *.exe
 *.out
 *.app
+/smus2midi
 
 # Visual Studio artifacts
 .vs/

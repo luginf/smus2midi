@@ -39,7 +39,8 @@ void parseSEvent(unsigned char* buffer, uint32_t offset, uint32_t dt, uint32_t& 
 		uint32_t duration = dt * (powf(2.0f, 2 - division)) * (dot ? 1.5f : 1.0f);
 		if (nTuplet > 0)
 			duration *= (2 * nTuplet) / (2 * nTuplet + 1.0f);
-		uint32_t nextStart = chord ? 0 : duration;
+		// chord/tieOut don't apply to SID_Rest: a rest always takes its full duration.
+		uint32_t nextStart = (sID < 128 && chord) ? 0 : duration;
 
 		if (sID < 128)
 		{
@@ -321,7 +322,7 @@ int main(int argc, char** argv)
 
 						std::string newTitle(argv[i]);
 						std::string newExtension(".mid");
-						size_t dotIndex = newTitle.find('.');
+						size_t dotIndex = newTitle.find_last_of('.');
 						newTitle.replace(dotIndex, newTitle.length() - dotIndex, newExtension);
 						myFile.saveAs(newTitle.c_str());
 						std::cout << "============= " << newTitle << " saved! ==============" << std::endl;
