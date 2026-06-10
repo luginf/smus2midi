@@ -10,6 +10,12 @@ Almost perfect, still a problem with some rests that need to be fixed.
 Requires a C++17 compiler. The header-only [cxxmidi](include/cxxmidi) library is bundled in `include/`.
 
 ```bash
+make
+```
+
+or directly:
+
+```bash
 g++ -std=c++17 -O2 -Iinclude main.cpp -o smus2midi
 ```
 
