@@ -270,7 +270,7 @@ void File::load(const char *path_)
 
     // calculate file length
     file.seekg (0, std::fstream::end);
-    std::fstream::streampos fileLength = file.tellg();
+    std::fstream::pos_type fileLength = file.tellg();
     file.seekg (0, std::fstream::beg);
 
     // control counters
@@ -370,7 +370,7 @@ void File::readTrackChunk(std::fstream & file_)
     // we will not use this size to read data (we wait for end event)
 
     uint8_t runningStatus = 0; // start with no running status
-    std::fstream::streampos begin = file_.tellg();
+    std::fstream::pos_type begin = file_.tellg();
     bool trackContinue = true;
 
     // read track data

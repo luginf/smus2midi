@@ -1,6 +1,7 @@
 #ifndef CXXMIDI_TIME_POINT_HPP
 #define CXXMIDI_TIME_POINT_HPP
 
+#include <cstdio>
 #include <cxxmidi/guts/stdint.hpp>
 
 namespace CxxMidi {
@@ -112,10 +113,10 @@ Point Point::fromTimecode(const std::string& tc_)
     int hh,mm,ss,us=0;
 
     if(tc_.find('&')==std::string::npos)
-        sscanf_s(tc_.c_str(), "%d:%d:%d", &hh,&mm,&ss);
+        sscanf(tc_.c_str(), "%d:%d:%d", &hh,&mm,&ss);
     else
     {
-        sscanf_s(tc_.c_str(),"%d:%d:%d&%d", &hh,&mm,&ss,&us);
+        sscanf(tc_.c_str(),"%d:%d:%d&%d", &hh,&mm,&ss,&us);
         r._us = us;
     }
 
